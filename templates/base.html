@@ -152,15 +152,18 @@
             {% endif %}
         {% endif %}
 
-        <div class="right">
-            {% if user.is_authenticated %}
-                <span>{{ user.username }} ({{ user.role }})</span>
-                <a class="btn logout-btn" href="{% url 'logout' %}">Выйти</a>
-            {% else %}
-                <a href="{% url 'login' %}">Войти</a>
-                <a href="{% url 'register' %}">Регистрация</a>
-            {% endif %}
-        </div>
+    <div class="right">
+        {% if user.is_authenticated %}
+            <span>{{ user.username }} ({{ user.role }})</span>
+                <form method="post" action="{% url 'logout' %}" style="margin:0;">
+                    {% csrf_token %}
+            <button class="logout-btn" type="submit">Выйти</button>
+        </form>
+    {% else %}
+        <a href="{% url 'login' %}">Войти</a>
+        <a href="{% url 'register' %}">Регистрация</a>
+    {% endif %}
+</div>
     </nav>
 
     <div class="container">
