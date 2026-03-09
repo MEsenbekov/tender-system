@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}Тендеры{% endblock %}
+
+{% block content %}
+<h1>Тендеры</h1>
+
+{% for tender in tenders %}
+    <div class="card">
+        <h3>
+            <a href="{% url 'tender_detail' tender.id %}">
+                {{ tender.title }}
+            </a>
+        </h3>
+
+        <p>{{ tender.description }}</p>
+
+        <p><strong>Заказчик:</strong> {{ tender.customer.username }}</p>
+        <p><strong>Срок:</strong> {{ tender.deadline }}</p>
+        <p><strong>Статус:</strong> {{ tender.status }}</p>
+    </div>
+{% empty %}
+    <p>Пока тендеров нет.</p>
+{% endfor %}
+{% endblock %}

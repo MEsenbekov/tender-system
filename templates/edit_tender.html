@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}Редактирование тендера{% endblock %}
+
+{% block content %}
+<h2>Редактирование тендера</h2>
+
+<form method="post">
+    {% csrf_token %}
+
+    <div class="field">
+        <label><b>Название</b></label>
+        <input name="title" value="{{ tender.title }}" required>
+    </div>
+
+    <div class="field">
+        <label><b>Описание</b></label>
+        <textarea name="description" rows="5" required>{{ tender.description }}</textarea>
+    </div>
+
+    <div class="field">
+        <label><b>Срок подачи заявок</b></label>
+        <input type="datetime-local" name="deadline" value="{{ tender.deadline|date:'Y-m-d\\TH:i' }}" required>
+    </div>
+
+    <div class="field">
+        <label><b>Требования к поставщикам</b></label>
+        <textarea name="requirements" rows="4">{{ tender.requirements }}</textarea>
+    </div>
+
+    <button type="submit">Сохранить изменения</button>
+</form>
+{% endblock %}

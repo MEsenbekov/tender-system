@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}Публикация тендера{% endblock %}
+
+{% block content %}
+<h2>Публикация тендера</h2>
+
+<div class="card">
+    <h3>{{ tender.title }}</h3>
+    <p>{{ tender.description }}</p>
+    <p><strong>Статус:</strong> {{ tender.status }}</p>
+    <p><strong>Срок:</strong> {{ tender.deadline }}</p>
+</div>
+
+<form method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn-success">Подтвердить публикацию</button>
+</form>
+{% endblock %}

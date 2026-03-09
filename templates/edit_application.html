@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}Подача заявки{% endblock %}
+
+{% block content %}
+<h2>Подача заявки</h2>
+
+<div class="card">
+    <p><strong>Тендер:</strong> {{ tender.title }}</p>
+    <p><strong>Срок подачи:</strong> {{ tender.deadline }}</p>
+</div>
+
+<form method="post">
+    {% csrf_token %}
+
+    <div class="field">
+        <label><b>Цена</b></label>
+        <input name="price" required>
+    </div>
+
+    <div class="field">
+        <label><b>Комментарий</b></label>
+        <textarea name="comment" rows="4"></textarea>
+    </div>
+
+    <button type="submit">Отправить заявку</button>
+</form>
+{% endblock %}
